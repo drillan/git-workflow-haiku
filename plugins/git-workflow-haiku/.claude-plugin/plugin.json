@@ -1,0 +1,7 @@
+{
+  "name": "git-workflow-haiku",
+  "description": "Complete git workflow with Haiku-powered sub-agents: commit, push, PR creation, PR merge, branch cleanup",
+  "author": {
+    "name": "Custom"
+  }
+}

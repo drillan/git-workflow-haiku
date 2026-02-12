@@ -1,0 +1,17 @@
+{
+  "name": "git-workflow-haiku",
+  "owner": {
+    "name": "drillan"
+  },
+  "metadata": {
+    "description": "Complete git workflow with Haiku-powered sub-agents for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "git-workflow-haiku",
+      "source": "./plugins/git-workflow-haiku",
+      "description": "Complete git workflow with Haiku-powered sub-agents: commit, push, PR creation, PR merge, branch cleanup",
+      "version": "1.0.0"
+    }
+  ]
+}
