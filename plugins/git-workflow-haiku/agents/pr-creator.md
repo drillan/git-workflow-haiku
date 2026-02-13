@@ -63,29 +63,32 @@ Execute these steps in order. Do NOT skip or combine steps.
    - Handle merge conflicts if necessary
    - Report error with resolution
 
-### Step 4: Create Pull Request
+### Step 4: Detect Related Issue Number
+
+**CRITICAL: Do NOT skip this step.**
+
+Extract issue number from branch name:
+```bash
+git branch --show-current | grep -oP '\d+' | head -1
+```
+
+This extracts the issue number (e.g., `feat/204-spinner` → `204`).
+Save this number as `ISSUE_NUMBER` for use in Step 5.
+
+### Step 5: Create Pull Request
 
 1. Analyze full changeset:
    - `git log main...HEAD` (or master) - get all commits
    - `git diff main...HEAD` (or master) - get full diff
 
-2. Detect related issue numbers:
-   - Search branch name for patterns: `feature/123-...`, `fix/123-...`, `123-...`
-   - Search commit messages for patterns: `(#123)`, `#123`
-   - Collect all unique issue numbers found
-
-3. Generate PR title:
+2. Generate PR title:
    - Extract from first commit message
    - Keep under 70 characters
    - Descriptive but concise
 
-4. Generate PR description:
-   - **Summary**: 1-3 bullet points of what changed
-   - **Closes**: `Closes #N` for each detected issue number (one per line)
-   - **Test plan**: Bulleted markdown checklist of what to verify
-   - **Attribution**: "🤖 Generated with [Claude Code](https://claude.com/claude-code)"
+3. Create PR with `Closes` directive:
 
-5. Create PR:
+   **If ISSUE_NUMBER was found in Step 4:**
    ```bash
    gh pr create --title "{TITLE}" --body "$(cat <<'EOF'
    ## Summary
@@ -101,10 +104,21 @@ Execute these steps in order. Do NOT skip or combine steps.
    )"
    ```
 
-   - If multiple issues detected, add one `Closes #N` per line
-   - If no issue number detected, omit the `Closes` line entirely
+   **If no ISSUE_NUMBER was found:**
+   ```bash
+   gh pr create --title "{TITLE}" --body "$(cat <<'EOF'
+   ## Summary
+   {SUMMARY}
 
-6. Capture PR URL from output
+   ## Test plan
+   {TEST_PLAN}
+
+   🤖 Generated with [Claude Code](https://claude.com/claude-code)
+   EOF
+   )"
+   ```
+
+4. Capture PR URL from output
 
 ## Output Format
 
