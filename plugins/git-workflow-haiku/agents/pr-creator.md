@@ -69,21 +69,29 @@ Execute these steps in order. Do NOT skip or combine steps.
    - `git log main...HEAD` (or master) - get all commits
    - `git diff main...HEAD` (or master) - get full diff
 
-2. Generate PR title:
+2. Detect related issue numbers:
+   - Search branch name for patterns: `feature/123-...`, `fix/123-...`, `123-...`
+   - Search commit messages for patterns: `(#123)`, `#123`
+   - Collect all unique issue numbers found
+
+3. Generate PR title:
    - Extract from first commit message
    - Keep under 70 characters
    - Descriptive but concise
 
-3. Generate PR description:
+4. Generate PR description:
    - **Summary**: 1-3 bullet points of what changed
+   - **Closes**: `Closes #N` for each detected issue number (one per line)
    - **Test plan**: Bulleted markdown checklist of what to verify
    - **Attribution**: "🤖 Generated with [Claude Code](https://claude.com/claude-code)"
 
-4. Create PR:
+5. Create PR:
    ```bash
    gh pr create --title "{TITLE}" --body "$(cat <<'EOF'
    ## Summary
    {SUMMARY}
+
+   Closes #{ISSUE_NUMBER}
 
    ## Test plan
    {TEST_PLAN}
@@ -93,7 +101,10 @@ Execute these steps in order. Do NOT skip or combine steps.
    )"
    ```
 
-5. Capture PR URL from output
+   - If multiple issues detected, add one `Closes #N` per line
+   - If no issue number detected, omit the `Closes` line entirely
+
+6. Capture PR URL from output
 
 ## Output Format
 
