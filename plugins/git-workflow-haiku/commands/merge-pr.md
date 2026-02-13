@@ -22,8 +22,8 @@ Default: `--squash` (squash commits into one)
 
 When the user invokes `/merge-pr <number> [options]`:
 
-1. Use the Task tool to invoke the `pr-merger` agent with the full argument string (e.g., `"123 --squash"`)
-   - agent_type: `"pr-merger"`
+1. Use the Task tool to invoke the `git-workflow-haiku:pr-merger` agent with the full argument string (e.g., `"123 --squash"`)
+   - subagent_type: `"git-workflow-haiku:pr-merger"`
    - Provide the PR number and merge strategy flags as the prompt
 
 2. The agent handles all workflow phases:

@@ -25,8 +25,8 @@ Complete workflow: create branch → commit changes → push to remote → creat
 
 When the user invokes `/commit-push-pr`:
 
-1. Use the Task tool to invoke the `pr-creator` agent:
-   - subagent_type: `pr-creator`
+1. Use the Task tool to invoke the `git-workflow-haiku:pr-creator` agent:
+   - subagent_type: `git-workflow-haiku:pr-creator`
    - description: `Create PR workflow`
    - prompt: `Commit changes, push to remote, and create a pull request`
 

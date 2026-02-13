@@ -24,8 +24,8 @@ Clean up all local branches marked as [gone] (deleted on remote) and their assoc
 
 When the user invokes `/clean_gone`:
 
-1. Use the Task tool to invoke the `branch-cleaner` agent:
-   - subagent_type: `branch-cleaner`
+1. Use the Task tool to invoke the `git-workflow-haiku:branch-cleaner` agent:
+   - subagent_type: `git-workflow-haiku:branch-cleaner`
    - description: `Clean gone branches`
    - prompt: `Clean up all local branches marked as [gone] including worktrees`
 
