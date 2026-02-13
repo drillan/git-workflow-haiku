@@ -23,8 +23,8 @@ Create a single git commit with automatically generated commit message.
 
 When the user invokes `/commit`:
 
-1. Use the Task tool to invoke the `git-committer` agent:
-   - subagent_type: `git-committer`
+1. Use the Task tool to invoke the `git-workflow-haiku:git-committer` agent:
+   - subagent_type: `git-workflow-haiku:git-committer`
    - description: `Create git commit`
    - prompt: `Create a git commit based on current changes`
 
